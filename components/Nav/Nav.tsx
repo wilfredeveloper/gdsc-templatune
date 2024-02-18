@@ -4,7 +4,7 @@ import styles from './Nav.module.css';
 
 export default function Nav() {
     return(
-        <nav className={`flex items-center justify-between pt-20 px-60`}>
+        <nav className={`flex items-center justify-between pt-14 px-60`}>
             <div>
                 <label className="inline-flex items-center cursor-pointer">
                     <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300 me-3">
