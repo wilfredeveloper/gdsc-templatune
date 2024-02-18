@@ -1,14 +1,16 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-
+import styles from './MultiStepForm.module.css'
 import { z } from 'zod'
 import { FormDataSchema } from '@/lib/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { useFormData } from './FormDataContext'
 
 type Inputs = z.infer<typeof FormDataSchema>
+
 
 const steps = [
   {
@@ -29,6 +31,8 @@ export default function MultiStepForm() {
   const [currentStep, setCurrentStep] = useState(0)
   const delta = currentStep - previousStep
 
+  
+
   const {
     register,
     handleSubmit,
@@ -47,7 +51,6 @@ export default function MultiStepForm() {
 
   type FieldName = keyof Inputs
 
-  const watchedFields = watch()
 
   const next = async () => {
     const fields = steps[currentStep].fields
@@ -71,8 +74,16 @@ export default function MultiStepForm() {
     }
   }
 
+  const watchedFields = watch()
+
+  const { setFormData } = useFormData();
+
+  useEffect(() => {
+    setFormData(watchedFields);
+  }, [watchedFields])
+
   return (
-    <section className='absolute inset-0 flex flex-col justify-between p-24'>
+    <section className={`${styles.form_wrapper} flex flex-col justify-between p-24`}>
       {/* steps */}
       <nav aria-label='Progress'>
         <ol role='list' className='space-y-4 md:flex md:space-x-8 md:space-y-0'>
