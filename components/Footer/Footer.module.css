@@ -1,0 +1,13 @@
+.paragraph_line {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 2.5%;
+}
+
+.email_heading {
+    font-weight: bold;
+}
