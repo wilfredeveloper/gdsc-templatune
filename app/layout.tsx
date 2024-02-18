@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
-
+import Nav from '@/components/Nav/Nav';
 import { cn } from "../lib/utils";
 
 
@@ -25,7 +25,10 @@ export default function RootLayout({
       <body className={cn(
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
-        )}>{children}</body>
+        )}>
+          
+        <Nav />
+        {children}</body>
     </html>
   );
 }
